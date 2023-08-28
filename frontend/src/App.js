@@ -24,6 +24,8 @@ class App {
           this.setState(data);
           // 로딩 HIDE
           this.loading.hide();
+          // 로컬에 저장
+          this.saveResult(data);
         });
       },
       onRandomSearch: () => {
@@ -38,10 +40,10 @@ class App {
     this.searchResult = new SearchResult({
       $target,
       initialData: this.data,
-      onClick: (image) => {
+      onClick: (cat) => {
         this.imageInfo.setState({
           visible: true,
-          image,
+          cat,
         });
       },
     });
@@ -53,11 +55,26 @@ class App {
         image: null,
       },
     });
+
+    this.init();
   }
 
   setState(nextData) {
-    console.log(this);
     this.data = nextData;
     this.searchResult.setState(nextData);
+  }
+
+  saveResult(result) {
+    console.log(result);
+    localStorage.setItem("lastResult", JSON.stringify(result));
+  }
+
+  init() {
+    const lastResult =
+      localStorage.getItem("lastResult") === null
+        ? []
+        : JSON.parse(localStorage.getItem("lastResult"));
+    console.log(lastResult);
+    this.setState(lastResult);
   }
 }

@@ -4,7 +4,10 @@
   font-weight: normal;
   font-style: normal;
 }
-
+:root[color-mode="light"] {
+  --background: #fff;
+  --textColor: #000;
+}
 :root[color-mode="dark"] {
   --background: #000;
   --textColor: #fff;
@@ -109,9 +112,13 @@ body * {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  background-color: #fff;
+  background-color: var(--background);
   border: 1px solid #eee;
   border-radius: 5px;
+}
+.close {
+  font-size: 18px;
+  cursor: pointer;
 }
 
 .ImageInfo .content-wrapper img {
@@ -128,7 +135,7 @@ body * {
     grid-template-columns: repeat(2, minmax(250px, 1fr));
   }
   .ImageInfo .content-wrapper {
-    width: 100%;
+    width: 90%;
   }
 }
 @media (max-width: 576px) {
