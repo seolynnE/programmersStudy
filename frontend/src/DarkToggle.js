@@ -33,3 +33,5 @@ class DarkToggle {
   }
   render() {}
 }
+
+export default DarkToggle;

@@ -22,8 +22,8 @@ class Loading {
     });
   }
 
-  setState(newxData) {
-    this.data = newxData;
+  setState(nextData) {
+    this.data = nextData;
     this.render();
   }
 
@@ -37,3 +37,5 @@ class Loading {
     }
   }
 }
+
+export default Loading;

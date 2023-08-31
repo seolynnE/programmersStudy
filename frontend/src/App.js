@@ -1,5 +1,12 @@
 console.log("app is running!");
 
+import Loading from "./Loading.js";
+import DarkToggle from "./DarkToggle.js";
+import SearchInput from "./SearchInput.js";
+import SearchResult from "./SearchResult.js";
+import ImageInfo from "./ImageInfo.js";
+import api from "./api.js";
+
 class App {
   $target = null;
   data = [];
@@ -22,7 +29,7 @@ class App {
         this.loading.show();
 
         api.fetchCats(keyword).then(({ data }) => {
-          this.setState(data);
+          this.setState(data ? data : []);
           // 로딩 HIDE
           this.loading.hide();
           // 로컬에 저장
@@ -83,7 +90,6 @@ class App {
   }
 
   saveResult(result) {
-    console.log(result);
     localStorage.setItem("lastResult", JSON.stringify(result));
   }
 
@@ -92,7 +98,8 @@ class App {
       localStorage.getItem("lastResult") === null
         ? []
         : JSON.parse(localStorage.getItem("lastResult"));
-    console.log(lastResult);
     this.setState(lastResult);
   }
 }
+
+export default App;
