@@ -31,11 +31,8 @@ class SearchResult {
           item.target.querySelector("img").dataset.src;
 
         // 마지막 요소를 찾아낸다
-        // console.log(this.data.length);
         let dataIndex = Number(item.target.dataset.index);
-        // console.log(dataIndex);
         if (dataIndex + 1 === this.data.length) {
-          console.log("마지막");
           // 마지막 요소라면? nextPage 호출
           this.onNextPage();
         }

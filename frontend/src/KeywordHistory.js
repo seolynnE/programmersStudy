@@ -44,15 +44,7 @@ class KeywordHistory {
     this.data = nextData;
     this.render();
   }
-
-  render() {
-    this.$keywordHistory.innerHTML = this.data
-      .map(
-        (keyword) => `
-        <li><button>${keyword}</button></li>`
-      )
-      .join("");
-
+  bindEvent() {
     this.$keywordHistory
       .querySelectorAll("li button")
       .forEach(($item, index) => {
@@ -63,6 +55,17 @@ class KeywordHistory {
           this.onSearch(this.data[index]);
         });
       });
+  }
+
+  render() {
+    this.$keywordHistory.innerHTML = this.data
+      .map(
+        (keyword) => `
+        <li><button>${keyword}</button></li>`
+      )
+      .join("");
+
+    this.bindEvent();
   }
 }
 

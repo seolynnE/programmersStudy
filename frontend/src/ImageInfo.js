@@ -19,15 +19,22 @@ class ImageInfo {
     this.render();
   }
 
-  showDetail(data) {
-    // 상세 정보 요청
-    api.fetCatDetail(data.cat.id).then(({ data }) => {
-      // 정보 업데이트
+  async showDetail(data) {
+    const detailInfo = await api.fetCatDetail(data.cat.id);
+    if (detailInfo) {
       this.setState({
         visible: true,
-        cat: data,
+        cat: detailInfo.data,
       });
-    });
+    }
+    // 상세 정보 요청
+    // api.fetCatDetail(data.cat.id).then(({ data }) => {
+    //   // 정보 업데이트
+    //   this.setState({
+    //     visible: true,
+    //     cat: data,
+    //   });
+    // });
   }
 
   closeImageInfo() {
